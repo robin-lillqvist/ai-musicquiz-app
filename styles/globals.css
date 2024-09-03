@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: hsl(var(--nextui-foreground));
+  background-color: hsl(var(--nextui-background));
+}
+
+input {
+  background-color: #9a5bdd;
+}
+
+h1 {
+  text-align: center;
+  font-size: 10vw;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+.songname,
+.artist {
+  color: #9a5bdd;
+}
+
+.mainDiv {
+  max-width: 1200px;
+}
