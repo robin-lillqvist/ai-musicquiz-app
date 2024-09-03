@@ -49,17 +49,17 @@ export default function Home() {
           prompt: ` Create a music quiz for me with the following criteria:
 
                     Theme: ${input}.
-                    Song Selection: Provide 5 songs that relate to this theme:
+                    Song Selection: Provide 10 songs that relate to this theme:
                     Reference Requirement: 
                     Each song must (explicitly by name) reference the theme in the lyric chorus, artist name or in the song title in a very clear and identifiable way that most people would know.
                     Each way to reference has a difficulty in the descending order: Lyrics, artist name and last and easiest is song title.
                     The connection to the theme should never be overly obscure.
                     
-                    Song 1: The first song should have a moderate connection to the theme, where the song references the theme in a subtle but identifiable manner, never in the song title.
-                    Song 2: The second song should have a more noticeable connection, with the theme being clearly referenced in the lyrics, preferably not in the song title.
-                    Song 3: The third song should make the connection to the theme more apparent, with clear and strong references in the lyrics or the title.
-                    Song 4: The fourth song should strongly reference the theme, with multiple or prominent mentions in the lyrics or once in the title.
-                    Song 5: The final song should have a direct and explicit connection to the theme, with unmistakable references in the lyrics or title that make it obvious.
+                    Song 1-2: The first songs should have a connection to the theme, where the song references the theme in a non-obvious but still identifiable manner, never in the song title.
+                    Song 3-4: The second songs should have a more noticeable connection, with the theme being clearly referenced in the lyrics or , preferably not in the song title.
+                    Song 5-6: The third songs should make the connection to the theme more apparent, with clear and strong references in the lyrics or the title.
+                    Song 7-8: The fourth songs should strongly reference the theme, with multiple or prominent mentions in the lyrics or once in the title.
+                    Song 9-10: The final songs should have a direct and explicit connection to the theme, with unmistakable references in the lyrics or title that make it obvious.
                     
                     Ensure that the theme is always referenced in the lyrics or title, with each subsequent song having a stronger and more recognizable link to the theme than the previous one."
 
@@ -123,7 +123,7 @@ export default function Home() {
             className='max-w-lg'
           />
           <Button color='secondary' onClick={handleSubmit}>
-            Send
+            Create
           </Button>
         </div>
       </div>
