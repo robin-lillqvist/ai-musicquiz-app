@@ -136,7 +136,7 @@ export default function Home() {
         )}
         {result && result.songs.length > 0 ? (
           <div style={{ marginTop: "30px" }}>
-            <h3>Quiz Results:</h3>
+            <h3>Quiz Suggestions:</h3>
             <div>
               {result.songs.map((item, index) => (
                 <Card style={{ marginTop: "30px" }} className='card' key={index}>
