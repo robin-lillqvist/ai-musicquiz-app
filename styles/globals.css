@@ -21,7 +21,8 @@ h2 {
 }
 
 .songname,
-.artist {
+.artist,
+.theme {
   color: #9a5bdd;
 }
 

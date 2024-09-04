@@ -6,10 +6,12 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
     const { prompt } = await request.json();
+
     const genAI = new GoogleGenerativeAI(process.env.API_KEY as string);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
     const rawdata = await model.generateContent(prompt);
-    const result = await rawdata.response.text();
+    const result = rawdata.response.text();
+    console.log(result);
 
     return new NextResponse(JSON.stringify({ quiz: result }), {
       status: 200,
