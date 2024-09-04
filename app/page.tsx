@@ -7,6 +7,7 @@ import { Spinner } from "@nextui-org/spinner";
 
 // Define types for the quiz data
 interface Song {
+  verified: string;
   title: string;
   artist: string;
   album: string;
@@ -82,60 +83,63 @@ export default function Home() {
                   Use the criteria below to structure the quiz and choose songs accordingly.
 
                   Theme Analysis:
-                  The theme can be either a specific year, a searchterm, or a combination of both. 
+                  The theme can be either a specific year, a search term, or a combination of both. 
                   Based on this analysis, categorize the theme appropriately for song selection.
-                  Reference them as "searchTerm", "Year" or "Combination".
-                  
-                  Song Selection Criteria:
-                  General Rules:
-
-                  Choose 10 songs that fit the theme without repeating artist or song title. 
-                  If you cannot find 10 songs that fit the theme, provide as many as you can. 
-                  Order songs from most difficult to least based on thematic connection strength.
+                  Song Selection Criteria: 
+                  Choose 5 songs that fit the theme without repeating artist or song title. 
+                  If you cannot find 5 songs that fit the theme, provide as many as you can.
 
                   If the Theme is a Year:
                   For years far from the current year, select globally popular songs.
                   For recent years (within the last 5 years), start with lesser-known songs and progress to more recognizable ones.
                   Balance song popularity to avoid repetition of overplayed hits.
 
-                  If the Theme is a searchTerm:
-                  Include songs where the searchTerm appears in the chorus, artist name, or song title.
-                  Difficulty ranking:
-                  Hardest: searchTerm in the chorus.
-                  Medium: searchTerm is part of the title or clearly in the artist name.
-                  Easiest: searchTerm clearly in the song title or artist name.
-
-                  If the Theme Includes Both searchTerm and a Year:
-                  Find songs that references the searchTerm in the chorus, artist name, or song title but only include songs that was released that specific year that was provided. 
-                  Example "Stockholm 2009", should only result in songs related to "Stockholm" that was released the year 2009.
+                  If the Theme is a text string:
+                  Include songs where the theme appears explicitly in the chorus, artist name, or song title.
 
                   Difficulty Structure:
-                  Songs 1-2: Hardest level; References theme clearly in chorus or thematically in artist name or song title. Use less well-known songs.
-                  Songs 3-4: Hard difficulty; References theme clearly in chorus or thematically in artist name or song title. 
-                  Songs 5-6: Medium difficulty; References theme explicitly in chorus or in artist name or song title. 
-                  Songs 7-8: Easy difficulty; Strongly references theme explicitly in chorus or in artist name or song title. Must have the theme explicitly in either a prominent part of chorus, song name or artist name.
-                  Songs 9-10: Easy difficulty; Very strongly references theme explicitly in chorus or in artist name or song title. Must have the theme explicitly in either a prominent part of chorus, song name or artist name.
+                  Songs 1: Hardest difficulty, 5; References theme clearly in chorus OR obscurely and thematically in artist name or song title, but never explicitly. Don't use world wide monster hits.
+                  Songs 2: Hard difficulty, 4; References theme clearly in chorus or thematically in artist name or song title. 
+                  Songs 3: Medium difficulty, 3; References theme explicitly in chorus or in artist name or song title. 
+                  Songs 4: Easy difficulty, 2; References theme explicitly in chorus or in artist name or song title. Must have the theme explicitly in either a prominent part of chorus, song name or artist name. Easy to connect to the theme.
+                  Songs 5: Easy difficulty, 1; References theme explicitly in chorus or in artist name or song title. Must have the theme explicitly in either a prominent part of chorus, song name or artist name. Very easy to connect to the theme.
 
-                  Create a JSON object representing the music quiz. The structure should be:
-                    {
-                      "theme": "string",  // The theme of the quiz
-                      "themeType": "string", // The identified wordType of the theme, e.g. Noun, Verb, Adjective, etc.
-                      "songs": [
-                        {
-                          "title": "string",      // The title of the song
-                          "artist": "string",     // The artist who performed the song
-                          "album": "string",      // The album the song is from
-                          "year": "int",          // The year the song was released
-                          "lyrics": "string",     // The relevant lyrics that connect to the theme
-                          "connection": "string", // A description of how the lyrics connect to the theme without any quotes
-                          "difficulty": "int"     // Rank the difficulty from 5 (hardest) to 1 (easiest)
-                        }
-                      ]
-                    }
-                      IMPORTANT!! 
-                      There should never be any quotes inside the values inside the JSON object. 
+                  If the Theme Includes Both text string and a Year:
+                  Find songs that mention the text string explicitly in the chorus, artist name, or song title and only include songs that were released that specific year provided.
 
-                  When creatin the JSON please use plain text without any formatting, and no quotes inside or around the JSON object.
+                  Theme verification: 
+                  Ensure each song is explicit and verifiable mentioning theme in the main elements (chorus, title, or artist name).
+                  Explicit Mention Requirement: Reject any song where the connection to the search term is indirect or ambiguous.
+                  Theme Documentation: Provide a brief explanation for each chosen song, citing specific lyrics, album contexts, or historical significance that directly ties it to the theme.
+                  Cross-Verification: Where possible, use multiple sources to confirm the thematic relevance to ensure it is not subject to personal interpretation.
+
+                  Song Information verification:
+                  Verify all song details against reliable sources like Spotify or Apple Music.
+                  Only include songs with confirmed details. Fabricated or inaccurately described songs must not be used.
+                  Use multiple sources to confirm song information to ensure accuracy and authenticity.
+                  Reorder songs in descending order highest difficulty (5) to lowest difficulty (1).
+
+                  Create a JSON object representing the music quiz. 
+                  The structure should be:
+                  {
+                    "theme": "string",
+                    "themeType": "string",
+                    "songs": [
+                      {
+                        "title": "string",
+                        "artist": "string",
+                        "album": "string",
+                        "year": "int",
+                        "lyrics": "string", // Don't use any quotes, apostrophes, only text, comma or period.
+                        "connection": "string", // Clearly state why this song was selected, without any quotes or apostrophes
+                        "difficulty": "int",
+                        "verified": "string", // Where this song was verified against
+                      }
+                    ]
+                  }
+
+                  IMPORTANT: Never use be any quotes inside the values inside the JSON object. 
+                  When creating the JSON, please use plain text without any formatting, and no quotes or apostrophes inside any of the JSON object values.
                   Include no additional text, comments, or explanations inside or outside the JSON object.`,
 
           /* ` Create a music quiz for me with the following criteria:
@@ -275,6 +279,9 @@ export default function Home() {
                     </div>
                     <div style={{ marginTop: "6px" }}>
                       <strong className='bold'>Connection:</strong> {item.connection}
+                    </div>
+                    <div style={{ marginTop: "6px" }}>
+                      <strong className='bold'>Verified:</strong> {item.verified}
                     </div>
                   </CardBody>
                 </Card>
