@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  color: hsl(var(--nextui-foreground));
+  color: #f1f1f1;
   background-color: hsl(var(--nextui-background));
 }
 
@@ -18,6 +18,10 @@ h1 {
 
 h2 {
   font-size: 1.5rem;
+}
+
+h6 {
+  color: #eeafeb;
 }
 
 .songname,

@@ -4,6 +4,7 @@ import { Card, CardBody, Divider } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/button";
 import { Spinner } from "@nextui-org/spinner";
+import Header from "./components/Header";
 
 // Define types for the quiz data
 interface Song {
@@ -134,6 +135,8 @@ export default function Home() {
                     }
 
                     IMPORTANT: When creating the JSON, use plain text without any formatting, and ensure no quotes or apostrophes are inside any of the JSON object values. Include no additional text, comments, or explanations inside or outside the JSON object.
+                    Before sending the response you must order the songs in descending order by difficulty. 
+                    Also make sure the response is formatted like the JSON provided above, without any wrapping characters.
                     `,
         }),
       });
@@ -159,7 +162,7 @@ export default function Home() {
 
   return (
     <main className='mainDiv'>
-      <h1>Music Quizzer</h1>
+      <Header />
       <div>
         <div className='mt-8 flex w-full flex-wrap md:flex-nowrap gap-4 items-center w-1/2 mx-auto justify-center'>
           <Input
@@ -185,8 +188,13 @@ export default function Home() {
         {result && result.songs.length > 0 ? (
           <div style={{ marginTop: "30px" }}>
             <h2>
-              Quiz Suggestions on the theme: <strong className='bold theme'>{result.theme}</strong> ({result.themeType})
+              Quiz Suggestions on the theme: <strong className='bold theme'>{result.theme}</strong>.
             </h2>
+            <h6>
+              Psst! Our AI isn't flaweless. Sometimes the AI doesn't understand.
+              <br />
+              If the results are bad, try again until it gets it!
+            </h6>
             <div>
               {result.songs.map((item, index) => (
                 <Card style={{ marginTop: "30px" }} className='card' key={index}>
