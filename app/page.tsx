@@ -4,6 +4,7 @@ import { Card, CardBody, Divider } from "@nextui-org/react";
 import { Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/button";
 import { Spinner } from "@nextui-org/spinner";
+
 import Header from "./components/Header";
 
 // Define types for the quiz data
@@ -68,7 +69,7 @@ export default function Home() {
     }
   } */
 
-  async function tryGemini(input: string) {
+  async function tryGemini(inputValue: string) {
     setIsLoading(true);
     setResult(null);
     setErrorMessage("");
@@ -148,8 +149,6 @@ export default function Home() {
       const data = await response.json();
       const quizData: QuizData = JSON.parse(data.quiz);
 
-      console.log(quizData);
-
       setResult(quizData);
     } catch (error) {
       console.error("Error fetching quiz data:", error);
@@ -166,11 +165,11 @@ export default function Home() {
       <div>
         <div className='mt-8 flex w-full flex-wrap md:flex-nowrap gap-4 items-center w-1/2 mx-auto justify-center'>
           <Input
-            type='Theme'
+            className='max-w-lg'
             label='Type a theme to create a Musiz Quiz about'
+            type='Theme'
             onChange={handleInputChange}
             /* color={"secondary"} */
-            className='max-w-lg'
           />
           <Button color='secondary' onClick={handleSubmit}>
             Create
@@ -182,7 +181,7 @@ export default function Home() {
       <div className='mt-6 flex w-full flex-wrap md:flex-nowrap gap-4 items-center w-1/2 mx-auto justify-center'>
         {isLoading && (
           <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-            <Spinner label='Hold on, asking the AI.' color='secondary' labelColor='secondary' />
+            <Spinner color='secondary' label='Hold on, asking the AI.' labelColor='secondary' />
           </div>
         )}
         {result && result.songs.length > 0 ? (
@@ -191,18 +190,18 @@ export default function Home() {
               Quiz Suggestions on the theme: <strong className='bold theme'>{result.theme}</strong>.
             </h2>
             <h6>
-              Psst! Our AI isn't flaweless. Sometimes the AI doesn't understand.
+              Psst! Our AI isn&apos;t flaweless. Sometimes the AI doesn&apos;t understand.
               <br />
               If the results are bad, try again until it gets it!
             </h6>
             <div>
               {result.songs.map((item, index) => (
                 <Card
-                  style={{ marginTop: "30px" }}
-                  isBlurred
                   key={index}
+                  isBlurred
                   className='card border-none dark:bg-default-100/50 max-w-[610px]'
                   shadow='sm'
+                  style={{ marginTop: "30px" }}
                 >
                   <div className='cardContainer'>
                     <div className='cardContent'>
