@@ -197,32 +197,42 @@ export default function Home() {
             </h6>
             <div>
               {result.songs.map((item, index) => (
-                <Card style={{ marginTop: "30px" }} className='card' key={index}>
-                  <CardBody>
-                    <h2 className='title'>
-                      {index + 1}. <span className='songname'>{item.title}</span> by
-                      <span className='artist'> {item.artist}</span>
-                    </h2>
-                    <Divider />
-                    <div style={{ marginTop: "6px" }}>
-                      <strong className='bold'>Album:</strong> {item.album}
+                <Card
+                  style={{ marginTop: "30px" }}
+                  isBlurred
+                  key={index}
+                  className='card border-none dark:bg-default-100/50 max-w-[610px]'
+                  shadow='sm'
+                >
+                  <div className='cardContainer'>
+                    <div className='cardContent'>
+                      <CardBody>
+                        <h2 className='title'>
+                          {index + 1}. <span className='songname'>{item.title}</span> by
+                          <span className='artist'> {item.artist}</span>
+                        </h2>
+                        <Divider />
+                        <div style={{ marginTop: "6px" }}>
+                          <strong className='bold'>Album:</strong> {item.album}
+                        </div>
+                        <div style={{ marginTop: "6px" }}>
+                          <strong className='bold'>Year:</strong> {item.year}
+                        </div>
+                        <div style={{ marginTop: "6px" }}>
+                          <strong className='bold'>Difficulty:</strong> {item.difficulty}
+                        </div>
+                        <div style={{ marginTop: "6px" }}>
+                          <strong className='bold'>Lyrics:</strong> {item.lyrics}
+                        </div>
+                        <div style={{ marginTop: "6px" }}>
+                          <strong className='bold'>Connection:</strong> {item.connection}
+                        </div>
+                        <div style={{ marginTop: "6px" }}>
+                          <strong className='bold'>Verified:</strong> {item.verified}
+                        </div>
+                      </CardBody>
                     </div>
-                    <div style={{ marginTop: "6px" }}>
-                      <strong className='bold'>Year:</strong> {item.year}
-                    </div>
-                    <div style={{ marginTop: "6px" }}>
-                      <strong className='bold'>Difficulty:</strong> {item.difficulty}
-                    </div>
-                    <div style={{ marginTop: "6px" }}>
-                      <strong className='bold'>Lyrics:</strong> {item.lyrics}
-                    </div>
-                    <div style={{ marginTop: "6px" }}>
-                      <strong className='bold'>Connection:</strong> {item.connection}
-                    </div>
-                    <div style={{ marginTop: "6px" }}>
-                      <strong className='bold'>Verified:</strong> {item.verified}
-                    </div>
-                  </CardBody>
+                  </div>
                 </Card>
               ))}
             </div>

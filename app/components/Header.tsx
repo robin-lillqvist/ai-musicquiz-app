@@ -25,7 +25,6 @@ export default function Component() {
 const styles: { [key: string]: React.CSSProperties } = {
   section: {
     background: 'url("/dots-pattern.svg") repeat', // SVG background with spaced out dots
-    backgroundColor: "#000",
     backgroundSize: "50px 50px", // Size of the dots pattern
     padding: "50px 20px", // Add some spacing around the section
   },

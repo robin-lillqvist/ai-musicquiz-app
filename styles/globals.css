@@ -7,6 +7,23 @@
   background-color: hsl(var(--nextui-background));
 }
 
+html,
+body {
+  /* background-color: #090909; /* Dark background base */
+
+  min-height: 100vh; /* Ensure background covers at least the full viewport height */
+  margin: 0;
+  padding: 0;
+  color: #e0e0e0; /* Slightly off-white text */
+}
+
+body {
+  min-height: 100vh; /* Ensure background covers at least the full viewport height */
+  margin: 0;
+  padding: 0;
+  color: #e0e0e0; /* Slightly off-white text */
+}
+
 input {
   background-color: #9a5bdd;
 }
@@ -33,4 +50,50 @@ h6 {
 .mainDiv {
   max-width: 1200px;
   padding-bottom: 40px;
+}
+
+/* The container wrapping your card */
+.cardContainer {
+  position: relative;
+  padding: 2px; /* Thin border effect */
+  border-radius: 8px; /* Rounded corners for smooth effect */
+  background-clip: padding-box;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Centers content inside */
+}
+
+/* Pseudo-element for the rotating gradient */
+.cardContainer::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(100% + 100px); /* Make pseudo-element larger to fully cover during rotation */
+  aspect-ratio: 1/1;
+  transform: translate(-50%, -50%) rotate(0deg); /* Center the gradient both vertically and horizontally */
+
+  background: conic-gradient(red, orange, yellow, green, blue, indigo, violet, red);
+  z-index: -1; /* Place behind the card content */
+  animation: rotateGradient 4s linear infinite; /* Rotate the gradient */
+}
+
+/* Keyframe animation to rotate the background */
+@keyframes rotateGradient {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg); /* Rotate the gradient */
+  }
+}
+
+/* Your card content inside */
+.cardContent {
+  background-color: #090909; /* Dark background for the card */
+  border-radius: 12px; /* Match border radius with the container */
+
+  color: #e0e0e0; /* Slightly off-white text */
+  position: relative;
+  z-index: 1; /* Ensure content is above the rotating background */
 }
