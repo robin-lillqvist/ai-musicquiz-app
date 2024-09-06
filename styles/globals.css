@@ -90,10 +90,23 @@ h6 {
 
 /* Your card content inside */
 .cardContent {
+  width: 100%;
   background-color: #090909; /* Dark background for the card */
   border-radius: 12px; /* Match border radius with the container */
 
   color: #e0e0e0; /* Slightly off-white text */
   position: relative;
   z-index: 1; /* Ensure content is above the rotating background */
+}
+
+.disclaimer {
+  margin-top: 4rem;
+  color: #6f6d31;
+}
+
+section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }

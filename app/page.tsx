@@ -187,13 +187,9 @@ export default function Home() {
         {result && result.songs.length > 0 ? (
           <div style={{ marginTop: "30px" }}>
             <h2>
-              Quiz Suggestions on the theme: <strong className='bold theme'>{result.theme}</strong>.
+              Quiz Suggestions on the theme: <br />
+              <strong className='bold theme'>{result.theme}</strong>.
             </h2>
-            <h6>
-              Psst! Our AI isn&apos;t flaweless. Sometimes the AI doesn&apos;t understand.
-              <br />
-              If the results are bad, try again until it gets it!
-            </h6>
             <div>
               {result.songs.map((item, index) => (
                 <Card
@@ -236,18 +232,19 @@ export default function Home() {
               ))}
             </div>
           </div>
-        ) : !isLoading && result === null ? (
+        ) : !isLoading && result !== null ? (
           <div style={{ marginTop: "10px" }}>
-            <p>No results yet.</p>
+            <p>Sorry, that theme was too hard for me.</p>
           </div>
-        ) : (
-          !isLoading && (
-            <div style={{ marginTop: "10px" }}>
-              <p>Sorry, that theme was too hard for me.</p>
-            </div>
-          )
-        )}
+        ) : null}
       </div>
+      <section>
+        <span className='disclaimer'>
+          Psst! Our AI isn&apos;t flaweless. Sometimes the AI doesn&apos;t understand.
+          <br />
+          If the results are bad, try again until it gets it!
+        </span>
+      </section>
     </main>
   );
 }
