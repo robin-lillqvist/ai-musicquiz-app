@@ -164,7 +164,7 @@ export default function Home() {
         <div className='mt-8 flex w-full flex-wrap md:flex-nowrap gap-4 items-center w-1/2 mx-auto justify-center'>
           <Input
             type='Theme'
-            label='Type a theme to create a Quiz about'
+            label='Type a theme to create a Musiz Quiz about'
             onChange={handleInputChange}
             /* color={"secondary"} */
             className='max-w-lg'
