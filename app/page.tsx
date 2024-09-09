@@ -163,13 +163,12 @@ export default function Home() {
     <main className='mainDiv'>
       <Header />
       <div>
-        <div className='mt-8 flex w-full flex-wrap md:flex-nowrap gap-4 items-center w-1/2 mx-auto justify-center'>
+        <div className='flex w-full flex-wrap md:flex-nowrap gap-4 items-center w-1/2 mx-auto justify-center'>
           <Input
             className='max-w-lg'
-            label='Type a theme to create a Musiz Quiz about'
+            placeholder='Type a theme to create a Musiz Quiz about'
             type='Theme'
             onChange={handleInputChange}
-            /* color={"secondary"} */
           />
           <Button color='secondary' onClick={handleSubmit}>
             Create
@@ -180,8 +179,17 @@ export default function Home() {
 
       <div className='mt-6 flex w-full flex-wrap md:flex-nowrap gap-4 items-center w-1/2 mx-auto justify-center'>
         {isLoading && (
-          <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-            <Spinner color='secondary' label='Hold on, asking the AI.' labelColor='secondary' />
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+            }}>
+            <Spinner
+              color='secondary'
+              label='Hold on, asking the AI.'
+              labelColor='secondary'
+            />
           </div>
         )}
         {result && result.songs.length > 0 ? (
@@ -197,13 +205,13 @@ export default function Home() {
                   isBlurred
                   className='card border-none dark:bg-default-100/50 max-w-[610px]'
                   shadow='sm'
-                  style={{ marginTop: "30px" }}
-                >
+                  style={{ marginTop: "30px" }}>
                   <div className='cardContainer'>
                     <div className='cardContent'>
                       <CardBody>
                         <h2 className='title'>
-                          {index + 1}. <span className='songname'>{item.title}</span> by
+                          {index + 1}.{" "}
+                          <span className='songname'>{item.title}</span> by
                           <span className='artist'> {item.artist}</span>
                         </h2>
                         <Divider />
@@ -214,16 +222,20 @@ export default function Home() {
                           <strong className='bold'>Year:</strong> {item.year}
                         </div>
                         <div style={{ marginTop: "6px" }}>
-                          <strong className='bold'>Difficulty:</strong> {item.difficulty}
+                          <strong className='bold'>Difficulty:</strong>{" "}
+                          {item.difficulty}
                         </div>
                         <div style={{ marginTop: "6px" }}>
-                          <strong className='bold'>Lyrics:</strong> {item.lyrics}
+                          <strong className='bold'>Lyrics:</strong>{" "}
+                          {item.lyrics}
                         </div>
                         <div style={{ marginTop: "6px" }}>
-                          <strong className='bold'>Connection:</strong> {item.connection}
+                          <strong className='bold'>Connection:</strong>{" "}
+                          {item.connection}
                         </div>
                         <div style={{ marginTop: "6px" }}>
-                          <strong className='bold'>Verified:</strong> {item.verified}
+                          <strong className='bold'>Verified:</strong>{" "}
+                          {item.verified}
                         </div>
                       </CardBody>
                     </div>
@@ -240,7 +252,8 @@ export default function Home() {
       </div>
       <section>
         <span className='disclaimer'>
-          Psst! Our AI isn&apos;t flaweless. Sometimes the AI doesn&apos;t understand.
+          Psst! Our AI isn&apos;t flaweless. Sometimes the AI doesn&apos;t
+          understand.
           <br />
           If the results are bad, try again until it gets it!
         </span>
