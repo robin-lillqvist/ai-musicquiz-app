@@ -252,7 +252,7 @@ export default function Home() {
       </div>
       <section>
         <span className='disclaimer'>
-          Psst! Our AI isn&apos;t flaweless. Sometimes the AI doesn&apos;t
+          Psst! Our AI isn&apos;t flawless. Sometimes the AI doesn&apos;t
           understand.
           <br />
           If the results are bad, try again until it gets it!
