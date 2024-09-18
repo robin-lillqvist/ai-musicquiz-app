@@ -14,8 +14,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
     const rawdata = await model.generateContent(prompt);
     const result = rawdata.response?.text() || "";
-
-    return new NextResponse(JSON.stringify({ quiz: result }), {
+    const jsonResult = JSON.parse(result);
+    return new NextResponse(JSON.stringify({ quiz: jsonResult }), {
       status: 200,
       headers: {
         "Content-Type": "application/json",
