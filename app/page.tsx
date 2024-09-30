@@ -40,35 +40,6 @@ export default function Home() {
     tryGemini(inputValue);
   };
 
-  /* async function identifyThemeType(input: string) {
-    setIsLoading(true);
-    setResult(null);
-    setErrorMessage("");
-    try {
-      const response = await fetch("/api/identify-theme", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          input: `${input}`,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to identify the input content");
-      }
-
-      const data = await response.json();
-
-      tryGemini(inputValue, data.wordType);
-    } catch (error) {
-      console.error("Error fetching data in the identification:", error);
-      setErrorMessage("Could not Identify the theme.");
-      setIsLoading(false);
-    }
-  } */
-
   async function tryGemini(inputValue: string) {
     setIsLoading(true);
     setResult(null);
@@ -169,6 +140,11 @@ export default function Home() {
             placeholder='Type a theme to create a Musiz Quiz about'
             type='Theme'
             onChange={handleInputChange}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSubmit();
+              }
+            }}
           />
           <Button color='secondary' onClick={handleSubmit}>
             Create
